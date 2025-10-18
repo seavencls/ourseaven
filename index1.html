@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Kelas VII - Jadwal Piket</title>
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Marker Felt', 'Arial Rounded MT Bold', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+            background-image: radial-gradient(circle, #ffffff 10%, #f0f0f0 90%);
+        }
+        
+        /* Container Utama */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border: 4px solid #ff6b6b;
+            background-image: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+        }
+        
+        /* Section Welcome */
+        .welcome-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px dashed #ff4757;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .welcome-text {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: bold;
+            color: #2d3436;
+            text-shadow: 3px 3px 0 #ffeaa7, 
+                         6px 6px 0 rgba(0,0,0,0.1);
+            animation: bounce 2s infinite;
+            padding: 0 10px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            background-color: #fff;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 3px solid #2d3436;
+            transform: rotate(-2deg);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+        }
+        
+        /* Animasi */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(-4deg); }
+        }
+        
+        /* Informasi Kelas */
+        .class-info {
+            background-color: #f3f9ff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 3px solid #74b9ff;
+            box-shadow: 5px 5px 0 #a5d8ff;
+            position: relative;
+        }
+        
+        .class-info::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 40px;
+            height: 20px;
+            background-color: #74b9ff;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        }
+        
+        .class-info p {
+            margin: 8px 0;
+            padding: 5px;
+            background-color: white;
+            border-radius: 8px;
+            border-left: 4px solid #0984e3;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: #2d3436;
+            background-color: #ffeaa7;
+            border-radius: 50px;
+            border: 3px solid #fdcb6e;
+            padding: 8px 25px;
+            box-shadow: 5px 5px 0 rgba(253, 203, 110, 0.3);
+            transform: translateX(-50%) rotate(-1deg);
+        }
+        
+        h2 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            color: #2d3436;
+            background-color: #a5d8ff;
+            border-radius: 10px;
+            border: 3px solid #74b9ff;
+            padding: 8px 20px;
+            box-shadow: 5px 5px 0 rgba(116, 185, 255, 0.3);
+            transform: translateX(-50%) rotate(1deg);
+        }
+        
+        h3 {
+            font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+            margin-top: 30px;
+            color: #2d3436;
+            background-color: #ff7675;
+            border-radius: 8px;
+            border: 3px solid #e84393;
+            padding: 6px 15px;
+            box-shadow: 5px 5px 0 rgba(232, 67, 147, 0.3);
+            transform: translateX(-50%) rotate(-2deg);
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+            border: 3px solid #636e72;
+            box-shadow: 8px 8px 0 rgba(99, 110, 114, 0.2);
+        }
+        
+        th, td {
+            border: 2px solid #b2bec3;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #ff7675;
+            color: white;
+            position: sticky;
+            top: 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+        
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        .day-column {
+            background-color: #e84393;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+        
+        /* Responsive Tables */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 15px 0;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: #f7f7f7;
+            border: 3px dashed #b2bec3;
+        }
+        
+        /* Gallery Memory */
+        .memory-gallery {
+            margin: 30px 0;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 15px;
+            border: 3px solid #00b894;
+            box-shadow: 5px 5px 0 rgba(0, 184, 148, 0.2);
+        }
+        
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .gallery-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #00b894, #55efc4);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 10px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border: 3px solid #ffeaa7;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.8rem;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border: 5px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #636e72;
+            padding: 15px;
+            border-top: 3px dotted #b2bec3;
+            background-color: #f7f7f7;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .welcome-text {
+                font-size: 2.2rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            td, th {
+                padding: 6px 4px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .welcome-section {
+                padding: 15px 0;
+            }
+            
+            .welcome-text {
+                font-size: 1.8rem;
+                padding: 8px 15px;
+            }
+            
+            .class-info {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+                padding: 6px 15px;
+            }
+            
+            h2 {
+                font-size: 1.1rem;
+                padding: 6px 15px;
+            }
+            
+            table {
+                font-size: 0.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .gallery-caption {
+                font-size: 0.7rem;
+                padding: 5px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Bagian Welcome dengan animasi -->
+        <div class="welcome-section">
+            <div class="welcome-text">Welcome to VII Class</div>
+        </div>
+        
+        <h1>selamat datang di web kelas VII </h1>
+        
+        <div class="class-info">
+            <h2>Kelas VII</h2>
+            <p><strong>Tahun Ajaran:</strong> 2025/2026</p>
+            <p><strong>Wali Kelas:</strong> Ibu Novilia Frisanti Wati Shiba Bokha, S.Pd.</p>
+            <p><strong>Ketua Kelas:</strong>Prema</p>
+            <p><strong>Wakil Ketua:</strong>Sabrina</p>
+        </div>
+        
+        <h2>Struktur Pengurus Kelas</h2>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Jabatan</th>
+                    <th>Nama Siswa</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Ketua Kelas</td>
+                    <td>Prema</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Wakil Ketua</td>
+                    <td>Sabrina</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Sekretaris</td>
+                    <td>Betrand, Qeisan</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Bendahara</td>
+                    <td>Nuel, Alin</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>kordinator kebersihan</td>
+                    <td>David, Deon, Andri, Satria</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Koordinator Keamanan</td>
+                    <td>Tina, Yoel, Nendra, Jio</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>keindahan</td>
+                    <td>Khaila, Dama, Candra, Gracia, Eud, Sakila</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>kesehatan</td>
+                    <td>Kalmani, Nendra, Ryu, Abir</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2>Jadwal Piket Harian</h2>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th class="day-column">Hari</th>
+                    <th>Nama Siswa</th>
+                
+                </tr>
+                <tr>
+                    <td class="day-column">Senin</td>
+                    <td>1. Yoel<br>2. Candra <br>3. Satria <br>4. Sakila<br>5.Gracia</td>
+                </tr>
+                <tr>
+                    <td class="day-column">Selasa</td>
+                    <td>1. Andri <br>2. Nendra<br>3.Prema<br>4. Tina<br>5. Khaila  </td>
+                 
+                </tr>
+                <tr>
+                    <td class="day-column">Rabu</td>
+                    <td>1. Betrand <br>2. Dama <br>3. Deon<br>4. Sabrina<br>5. Kalmani </td>
+                   
+                </tr>
+                <tr>
+                    <td class="day-column">Kamis</td>
+                    <td>1. Nuel<br>2. David <br>3. Abir<br>4. Eudia<br>5. Alin </td>
+               
+                </tr>
+                <tr>
+                    <td class="day-column">Jumat</td>
+                    <td>1. Ryu<br>2. Hendra <br>3. Jio<br>4. Qeisan </td>
+                   
+                </tr>
+            </table>
+        </div>
+        
+        <h2>halo Seaven</h2>
+        <div class="table-container">
+           
+        </div>
+        
+        <!-- Gallery Memory Bulan Ini -->
+        <div class="memory-gallery">
+            <h3 class="gallery-title">Memory Seaven</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('https://www.dropbox.com/scl/fi/qp1opigwcc2k6v18p0iag/mpls.png?rlkey=jdjbztqsr3zhrnquw01cx52jp&st=uhfrlaww&raw=1')">
+                    <img src="https://www.dropbox.com/scl/fi/qp1opigwcc2k6v18p0iag/mpls.png?rlkey=jdjbztqsr3zhrnquw01cx52jp&st=uhfrlaww&raw=1" alt="mpls" class="gallery-img">
+                    <div class="gallery-caption">mpls</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightbox Element -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <img src="" alt="" class="lightbox-img" id="lightbox-img">
+        </div>
+        
+        <div class="footer">
+            <p>2025 Kelas VII  | Terakhir diperbarui: 18 - oktober - 2025</p>
+        </div>
+         <div class="footer-copyright">
+        &copy;X-ALPHA
+    </div>
+
+    <script>
+        // Fungsi untuk membuka lightbox
+        function openLightbox(src, alt) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = src;
+            lightboxImg.alt = alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Mencegah scroll saat lightbox aktif
+        }
+        
+        // Fungsi untuk menutup lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Mengembalikan scroll
+        }
+        
+        // Tutup lightbox dengan tombol ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
